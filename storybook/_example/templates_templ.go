@@ -4,13 +4,15 @@ package example
 
 //lint:file-ignore SA4006 This context is only used if a nested component is present.
 
-import "github.com/a-h/templ"
-import "context"
-import "io"
-import "bytes"
+import (
+	"bytes"
+	"context"
+	"fmt"
+	"io"
+	"time"
 
-import "fmt"
-import "time"
+	"github.com/a-h/templ"
+)
 
 func headerTemplate(name string) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {

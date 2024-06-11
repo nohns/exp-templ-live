@@ -4,11 +4,13 @@ package visualize
 
 //lint:file-ignore SA4006 This context is only used if a nested component is present.
 
-import "github.com/a-h/templ"
-import "context"
-import "io"
-import "bytes"
-import "strings"
+import (
+	"context"
+	"io"
+	"strings"
+
+	"github.com/a-h/templ"
+)
 
 func row() templ.CSSClass {
 	var templ_7745c5c3_CSSBuilder strings.Builder
@@ -44,7 +46,7 @@ func code() templ.CSSClass {
 
 func combine(templFileName string, left, right templ.Component) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
-		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*templ.DiffBuffer)
 		if !templ_7745c5c3_IsBuffer {
 			templ_7745c5c3_Buffer = templ.GetBuffer()
 			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
@@ -85,7 +87,7 @@ func combine(templFileName string, left, right templ.Component) templ.Component 
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var4 = []any{templ.Classes(row())}
+		templ_7745c5c3_Var4 := []any{templ.Classes(row())}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var4...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -107,7 +109,7 @@ func combine(templFileName string, left, right templ.Component) templ.Component 
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var6 = []any{templ.Classes(column(), code())}
+		templ_7745c5c3_Var6 := []any{templ.Classes(column(), code())}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var6...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -137,7 +139,7 @@ func combine(templFileName string, left, right templ.Component) templ.Component 
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var8 = []any{templ.Classes(column(), code())}
+		templ_7745c5c3_Var8 := []any{templ.Classes(column(), code())}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var8...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -210,7 +212,7 @@ func removeHighlight(sourceId, targetId string) templ.ComponentScript {
 
 func mappedCharacter(s string, sourceID, targetID string) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
-		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*templ.DiffBuffer)
 		if !templ_7745c5c3_IsBuffer {
 			templ_7745c5c3_Buffer = templ.GetBuffer()
 			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
@@ -221,7 +223,7 @@ func mappedCharacter(s string, sourceID, targetID string) templ.Component {
 			templ_7745c5c3_Var10 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var11 = []any{templ.Classes(templ.Class("mapped"), templ.Class(sourceID), templ.Class(targetID))}
+		templ_7745c5c3_Var11 := []any{templ.Classes(templ.Class("mapped"), templ.Class(sourceID), templ.Class(targetID))}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var11...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

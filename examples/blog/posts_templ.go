@@ -4,17 +4,18 @@ package main
 
 //lint:file-ignore SA4006 This context is only used if a nested component is present.
 
-import "github.com/a-h/templ"
-import "context"
-import "io"
-import "bytes"
+import (
+	"context"
+	"fmt"
+	"io"
+	"time"
 
-import "fmt"
-import "time"
+	"github.com/a-h/templ"
+)
 
 func headerTemplate(name string) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
-		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*templ.DiffBuffer)
 		if !templ_7745c5c3_IsBuffer {
 			templ_7745c5c3_Buffer = templ.GetBuffer()
 			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
@@ -51,7 +52,7 @@ func headerTemplate(name string) templ.Component {
 
 func footerTemplate() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
-		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*templ.DiffBuffer)
 		if !templ_7745c5c3_IsBuffer {
 			templ_7745c5c3_Buffer = templ.GetBuffer()
 			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
@@ -88,7 +89,7 @@ func footerTemplate() templ.Component {
 
 func navTemplate() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
-		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*templ.DiffBuffer)
 		if !templ_7745c5c3_IsBuffer {
 			templ_7745c5c3_Buffer = templ.GetBuffer()
 			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
@@ -112,7 +113,7 @@ func navTemplate() templ.Component {
 
 func layout(name string) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
-		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*templ.DiffBuffer)
 		if !templ_7745c5c3_IsBuffer {
 			templ_7745c5c3_Buffer = templ.GetBuffer()
 			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
@@ -177,7 +178,7 @@ func layout(name string) templ.Component {
 
 func postsTemplate(posts []Post) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
-		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*templ.DiffBuffer)
 		if !templ_7745c5c3_IsBuffer {
 			templ_7745c5c3_Buffer = templ.GetBuffer()
 			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
@@ -237,7 +238,7 @@ func postsTemplate(posts []Post) templ.Component {
 
 func home() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
-		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*templ.DiffBuffer)
 		if !templ_7745c5c3_IsBuffer {
 			templ_7745c5c3_Buffer = templ.GetBuffer()
 			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
@@ -249,7 +250,7 @@ func home() templ.Component {
 		}
 		ctx = templ.ClearChildren(ctx)
 		templ_7745c5c3_Var12 := templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
-			templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+			templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*templ.DiffBuffer)
 			if !templ_7745c5c3_IsBuffer {
 				templ_7745c5c3_Buffer = templ.GetBuffer()
 				defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
@@ -276,7 +277,7 @@ func home() templ.Component {
 
 func posts(posts []Post) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
-		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*templ.DiffBuffer)
 		if !templ_7745c5c3_IsBuffer {
 			templ_7745c5c3_Buffer = templ.GetBuffer()
 			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
@@ -288,7 +289,7 @@ func posts(posts []Post) templ.Component {
 		}
 		ctx = templ.ClearChildren(ctx)
 		templ_7745c5c3_Var14 := templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
-			templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+			templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*templ.DiffBuffer)
 			if !templ_7745c5c3_IsBuffer {
 				templ_7745c5c3_Buffer = templ.GetBuffer()
 				defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)

@@ -762,15 +762,17 @@ func RenderScriptItems(ctx context.Context, w io.Writer, scripts ...ComponentScr
 
 var bufferPool = sync.Pool{
 	New: func() any {
-		return new(bytes.Buffer)
+		b := new(DiffBuffer)
+		b.Delegate = true
+		return b
 	},
 }
 
-func GetBuffer() *bytes.Buffer {
-	return bufferPool.Get().(*bytes.Buffer)
+func GetBuffer() *DiffBuffer {
+	return bufferPool.Get().(*DiffBuffer)
 }
 
-func ReleaseBuffer(b *bytes.Buffer) {
+func ReleaseBuffer(b *DiffBuffer) {
 	b.Reset()
 	bufferPool.Put(b)
 }

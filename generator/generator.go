@@ -193,9 +193,10 @@ func (g *generator) writeImports() error {
 			return err
 		}
 		// Buffer namespace.
-		if _, err = g.w.Write("import \"bytes\"\n"); err != nil {
+		// WE NOW USE A DIFF BUFFER which is included in templ
+		/*if _, err = g.w.Write("import \"bytes\"\n"); err != nil {
 			return err
-		}
+		}*/
 	}
 	if hasCSS {
 		// strings.Builder is used to create CSS.
@@ -334,8 +335,8 @@ func (g *generator) writeGoExpression(n parser.TemplateFileGoExpression) (err er
 }
 
 func (g *generator) writeTemplBuffer(indentLevel int) (err error) {
-	// templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := w.(*bytes.Buffer)
-	if _, err = g.w.WriteIndent(indentLevel, "templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)\n"); err != nil {
+	// templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := w.(*templ.DiffBuffer)
+	if _, err = g.w.WriteIndent(indentLevel, "templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*templ.DiffBuffer)\n"); err != nil {
 		return err
 	}
 	if _, err = g.w.WriteIndent(indentLevel, "if !templ_7745c5c3_IsBuffer {\n"); err != nil {
@@ -1112,7 +1113,7 @@ func (g *generator) writeExpressionAttribute(indentLevel int, elementName string
 		if _, err = g.w.Write("\n"); err != nil {
 			return err
 		}
-		if _, err = g.w.WriteIndent(indentLevel, "_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(string("+vn+")))\n"); err != nil {
+		if _, err = g.w.WriteIndent(indentLevel, "_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteDynamic(templ.EscapeString(string("+vn+")))\n"); err != nil {
 			return err
 		}
 		if err = g.writeErrorHandler(indentLevel); err != nil {
@@ -1168,7 +1169,7 @@ func (g *generator) writeExpressionAttribute(indentLevel int, elementName string
 			}
 
 			// _, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(vn)
-			if _, err = g.w.WriteIndent(indentLevel, "_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString("+vn+"))\n"); err != nil {
+			if _, err = g.w.WriteIndent(indentLevel, "_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteDynamic(templ.EscapeString("+vn+"))\n"); err != nil {
 				return err
 			}
 			if err = g.writeErrorHandler(indentLevel); err != nil {
@@ -1366,7 +1367,7 @@ func (g *generator) writeStringExpression(indentLevel int, e parser.Expression) 
 	}
 
 	// _, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(vn)
-	if _, err = g.w.WriteIndent(indentLevel, "_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString("+vn+"))\n"); err != nil {
+	if _, err = g.w.WriteIndent(indentLevel, "_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteDynamic(templ.EscapeString("+vn+"))\n"); err != nil {
 		return err
 	}
 	if err = g.writeErrorHandler(indentLevel); err != nil {

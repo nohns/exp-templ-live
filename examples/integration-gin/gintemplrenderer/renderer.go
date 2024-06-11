@@ -2,8 +2,9 @@ package gintemplrenderer
 
 import (
 	"context"
-	"github.com/gin-gonic/gin/render"
 	"net/http"
+
+	"github.com/gin-gonic/gin/render"
 
 	"github.com/a-h/templ"
 )
